@@ -119,7 +119,7 @@ public class Listadupla {
         System.out.println("-------------------------------------------------------");
         System.out.println("1- incluir uma pessoa no início na lista");
         System.out.println("2- incluir uma pessoa no fim da lista");
-        System.out.println("3- Incluir pessoa em um ponto no meio da lista");
+        System.out.println("3- Incluir pessoa na segunda posição da lista");
         System.out.println("4- Verificar se alguma pessoa específica está na lista");
         System.out.println("5- Remover uma pessoa específica da lista");
         System.out.println("6- Remover a primeira pessoa da lista");
@@ -142,6 +142,16 @@ public class Listadupla {
                     insereFinal();
                     break;
                 case 3:
+                    if (inicio == null){
+                        System.out.println("não existe lista");
+                    } else {
+                        Pessoa p = new Pessoa();
+                        p.setNome(pedeString("informe o nome da pessoa", 1, 100));
+                        p.setCod(pedeInt("informe o codigo da pessoa", 1, 100));
+                        p.setAnterior(inicio);
+                        p.setProximo(inicio.getProximo());
+                        inicio.setProximo(p);
+                    }
                     break;
                 case 4:
                     verificaPessoa();
