@@ -32,6 +32,7 @@ public class Listadupla {
             Pessoa p = new Pessoa();
             p.setNome(pedeString("informe o nome da pessoa", 1, 100));
             p.setCod(pedeInt("informe o código da pessoa", 1, 100));
+            p.setAnterior(fim);
             fim.setProximo(p);
             fim = p;
         }
