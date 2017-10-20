@@ -14,13 +14,15 @@ public class Listadupla {
         p.setCod(pedeInt("informe o código da pessoa", 1, 100));
         if (inicio == null) {
             inicio = p;
-            fim = inicio;
-            inicio.setProximo(fim);
+            fim = p;
+            p.setAnterior(null);
+            p.setProximo(fim);
             fim.setProximo(null);
-            inicio.setAnterior(null);
             fim.setAnterior(inicio);
         } else {
+            inicio.setAnterior(p);
             p.setProximo(inicio);
+            p.setAnterior(null);
             inicio = p;
         }
     }
@@ -34,6 +36,7 @@ public class Listadupla {
             p.setCod(pedeInt("informe o código da pessoa", 1, 100));
             p.setAnterior(fim);
             fim.setProximo(p);
+            p.setProximo(null);
             fim = p;
         }
     }
@@ -60,17 +63,17 @@ public class Listadupla {
             }
         }
     }
-    
-    public static void removeEspecifico(){
-        if (inicio == null){
+
+    public static void removeEspecifico() {
+        if (inicio == null) {
             System.out.println("não existe lista");
         } else {
             Pessoa atual = inicio;
             int codigo = pedeInt("informe o codigo da pessoa a ser removida", 1, 100);
-            while (atual!=null){
-                if(atual.getCod()==codigo){
-                    anterior.setProximo(atual.getProximo());
-                    
+            while (atual != null) {
+                if (atual.getCod() == codigo) {
+                    atual.getAnterior().setProximo(atual.getProximo());
+                    atual.getProximo().setAnterior(atual.getAnterior());
                 } else {
                     atual = atual.getProximo();
                 }
@@ -118,14 +121,14 @@ public class Listadupla {
 
     public static void menu() {
         System.out.println("-------------------------------------------------------");
-        System.out.println("1- incluir uma pessoa no início na lista");
-        System.out.println("2- incluir uma pessoa no fim da lista");
-        System.out.println("3- Incluir pessoa na segunda posição da lista");
-        System.out.println("4- Verificar se alguma pessoa específica está na lista");
+        System.out.println("1- incluir uma pessoa no início na lista(pronto)");
+        System.out.println("2- incluir uma pessoa no fim da lista(pronto)");
+        System.out.println("3- Incluir pessoa na segunda posição da lista(pronto)");
+        System.out.println("4- Verificar se alguma pessoa específica está na lista(pronto)");
         System.out.println("5- Remover uma pessoa específica da lista");
-        System.out.println("6- Remover a primeira pessoa da lista");
-        System.out.println("7- Remove a última pessoa da lista");
-        System.out.println("8- Mostrar a lista da primeira para a última pessoa");
+        System.out.println("6- Remover a primeira pessoa da lista(pronto)");
+        System.out.println("7- Remover a última pessoa da lista");
+        System.out.println("8- Mostrar a lista da primeira para a última pessoa(pronto)");
         System.out.println("9- Mostrar a lista da última para a primeira pessoa");
 
     }
@@ -143,7 +146,7 @@ public class Listadupla {
                     insereFinal();
                     break;
                 case 3:
-                    if (inicio == null){
+                    if (inicio == null) {
                         System.out.println("não existe lista");
                     } else {
                         Pessoa p = new Pessoa();
@@ -177,7 +180,8 @@ public class Listadupla {
                     if (inicio == null) {
                         System.out.println("não existe lista");
                     } else {
-
+                        fim = fim.getAnterior();
+                        fim.setProximo(null);
                     }
                     break;
                 case 8:
@@ -197,7 +201,7 @@ public class Listadupla {
                         System.out.println("não existe lista");
                     } else {
                         Pessoa atual = fim;
-                        while (atual!= null) {
+                        while (atual != null) {
                             System.out.println(atual.getCod() + "- " + atual.getNome());
                             atual = atual.getAnterior();
                         }
