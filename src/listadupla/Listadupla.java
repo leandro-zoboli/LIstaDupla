@@ -211,8 +211,13 @@ public class Listadupla {
                     if (inicio == null) {
                         System.out.println("não existe lista");
                     } else {
-                        fim = fim.getAnterior();
-                        fim.setProximo(null);
+                        if (fim.getAnterior()==null) {
+                            fim = null;
+                            inicio = null;
+                        } else {
+                            fim = fim.getAnterior();
+                            fim.setProximo(null);
+                        }
                     }
                     break;
                 case 8:
