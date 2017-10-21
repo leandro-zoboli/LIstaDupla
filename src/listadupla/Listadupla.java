@@ -19,6 +19,7 @@ public class Listadupla {
             p.setProximo(fim);
             fim.setProximo(null);
             fim.setAnterior(inicio);
+            inicio.setAnterior(null);
         } else {
             inicio.setAnterior(p);
             p.setProximo(inicio);
@@ -70,12 +71,30 @@ public class Listadupla {
         } else {
             Pessoa atual = inicio;
             int codigo = pedeInt("informe o codigo da pessoa a ser removida", 1, 100);
-            while (atual != null) {
-                if (atual.getCod() == codigo) {
-                    atual.getAnterior().setProximo(atual.getProximo());
-                    atual.getProximo().setAnterior(atual.getAnterior());
+            if (codigo == inicio.getCod()) {
+                if (inicio.getProximo() == null) {
+                    inicio = null;
+                    fim = null;
                 } else {
-                    atual = atual.getProximo();
+                    inicio = inicio.getProximo();
+                    inicio.setAnterior(null);
+                }
+            } else {
+                if (codigo == fim.getCod()) {
+                    fim = fim.getAnterior();
+                    fim.setProximo(null);
+                } else {
+                    while (atual != null) {
+                        if (atual.getCod() == codigo) {
+                            Pessoa ant = atual.getAnterior();
+                            Pessoa pro = atual.getProximo();
+                            ant.setProximo(pro);
+                            pro.setAnterior(ant);
+                            break;
+                        } else {
+                            atual = atual.getProximo();
+                        }
+                    }
                 }
             }
         }
@@ -127,9 +146,9 @@ public class Listadupla {
         System.out.println("4- Verificar se alguma pessoa específica está na lista(pronto)");
         System.out.println("5- Remover uma pessoa específica da lista");
         System.out.println("6- Remover a primeira pessoa da lista(pronto)");
-        System.out.println("7- Remover a última pessoa da lista");
+        System.out.println("7- Remover a última pessoa da lista(pronto)");
         System.out.println("8- Mostrar a lista da primeira para a última pessoa(pronto)");
-        System.out.println("9- Mostrar a lista da última para a primeira pessoa");
+        System.out.println("9- Mostrar a lista da última para a primeira pessoa(pronto)");
 
     }
 
@@ -149,12 +168,24 @@ public class Listadupla {
                     if (inicio == null) {
                         System.out.println("não existe lista");
                     } else {
-                        Pessoa p = new Pessoa();
-                        p.setNome(pedeString("informe o nome da pessoa", 1, 100));
-                        p.setCod(pedeInt("informe o codigo da pessoa", 1, 100));
-                        p.setAnterior(inicio);
-                        p.setProximo(inicio.getProximo());
-                        inicio.setProximo(p);
+                        if (inicio == fim) {
+                            Pessoa p = new Pessoa();
+                            p.setNome(pedeString("informe o nome da pessoa", 1, 100));
+                            p.setCod(pedeInt("informe o codigo da pessoa", 1, 100));
+                            p.setAnterior(inicio);
+                            p.setProximo(null);
+                            fim = p;
+                            inicio.setProximo(p);
+                        } else {
+                            Pessoa p = new Pessoa();
+                            p.setNome(pedeString("informe o nome da pessoa", 1, 100));
+                            p.setCod(pedeInt("informe o codigo da pessoa", 1, 100));
+                            p.setAnterior(inicio);
+                            p.setProximo(inicio.getProximo());
+                            inicio.setProximo(p);
+                            Pessoa pro = p.getProximo();
+                            pro.setAnterior(p);
+                        }
                     }
                     break;
                 case 4:
