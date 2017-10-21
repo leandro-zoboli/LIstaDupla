@@ -81,9 +81,13 @@ public class Listadupla {
                 }
             } else {
                 if (codigo == fim.getCod()) {
-                    fim = fim.getAnterior();
-                    fim.setProximo(null);
-                } else {
+                    if (fim.getAnterior() == null) {
+                        fim = null;
+                        inicio = null;
+                    } else {
+                        fim = fim.getAnterior();
+                        fim.setProximo(null);
+                    } 
                     while (atual != null) {
                         if (atual.getCod() == codigo) {
                             Pessoa ant = atual.getAnterior();
@@ -96,9 +100,11 @@ public class Listadupla {
                         }
                     }
                 }
+                }
             }
         }
-    }
+
+    
 
     public static int pedeInt(String msg, int min, int max) {
         int ret = min - 1;
@@ -211,7 +217,7 @@ public class Listadupla {
                     if (inicio == null) {
                         System.out.println("não existe lista");
                     } else {
-                        if (fim.getAnterior()==null) {
+                        if (fim.getAnterior() == null) {
                             fim = null;
                             inicio = null;
                         } else {
