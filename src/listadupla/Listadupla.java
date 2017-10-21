@@ -140,15 +140,15 @@ public class Listadupla {
 
     public static void menu() {
         System.out.println("-------------------------------------------------------");
-        System.out.println("1- incluir uma pessoa no início na lista(pronto)");
-        System.out.println("2- incluir uma pessoa no fim da lista(pronto)");
-        System.out.println("3- Incluir pessoa na segunda posição da lista(pronto)");
-        System.out.println("4- Verificar se alguma pessoa específica está na lista(pronto)");
+        System.out.println("1- incluir uma pessoa no início na lista");
+        System.out.println("2- incluir uma pessoa no fim da lista");
+        System.out.println("3- Incluir pessoa na segunda posição da lista");
+        System.out.println("4- Verificar se alguma pessoa específica está na lista");
         System.out.println("5- Remover uma pessoa específica da lista");
-        System.out.println("6- Remover a primeira pessoa da lista(pronto)");
-        System.out.println("7- Remover a última pessoa da lista(pronto)");
-        System.out.println("8- Mostrar a lista da primeira para a última pessoa(pronto)");
-        System.out.println("9- Mostrar a lista da última para a primeira pessoa(pronto)");
+        System.out.println("6- Remover a primeira pessoa da lista");
+        System.out.println("7- Remover a última pessoa da lista");
+        System.out.println("8- Mostrar a lista da primeira para a última pessoa");
+        System.out.println("9- Mostrar a lista da última para a primeira pessoa");
 
     }
 
